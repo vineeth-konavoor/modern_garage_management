@@ -1,0 +1,17 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<h1>Finish Job
+	</h1>
+	<table>
+	<tr><th>Date</th><th>Time</th><th>Notes</th><th>Finish</th></tr>
+	<form action='/finish_work_return/{{job_id}}' method='POST'>
+		<tr>
+		<td><input type='date' name='finishing_date' id='finishing_date' value={{date_today}} required></td>
+		
+		<td><input type='time' name='finishing_time' id='finishing_time' value={{time_now}} required></td>
+		
+		<td><textarea name='finishing_notes' id='finishing_notes'rows="5" cols="30"></textarea></td>
+		<td><input type="submit" value="Mark as Finished"></td>
+		</tr>
+	</form>
+	</table>
+</div>{%endblock%}

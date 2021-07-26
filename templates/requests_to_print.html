@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>MGM - Abdulla Garage</title>
+	<link rel="stylesheet" type= "text/css" href="{{url_for('static',filename='resources/stylesheet.css')}}">
+</head>
+<body onload="document.title='{{title}}';javascript:window.print()">
+		<table id="ConsutaBPM">
+			<th>Job ID</th>
+			<th>Request ID</th>
+			<th>Company</th>
+			<th>Model</th>
+			<th>Variant</th>
+			<th>Make</th>
+			<th>Chasis Number</th>
+			<th>Engine Number</th>
+			<th>Part Name</th>
+			<th>Units</th>
+			{%for job in requests%}
+			{%for row in job%}
+				<tr>
+					<form action="/procured_out_order/{{row[0]}}" method="POST">
+						{%for item in row%}
+							<td>{{item}}</td>
+						{%endfor%}
+					</form>
+				</tr>
+			{%endfor%}
+		
+	{%endfor%}
+	</table>
+	</body>
+</html>

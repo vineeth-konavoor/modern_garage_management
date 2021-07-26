@@ -1,0 +1,6 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	{%for file in filepaths%}
+		<img src="/{{file}}"></img></br>
+		{{file}}</br>
+	{%endfor%}
+</div>{%endblock%}

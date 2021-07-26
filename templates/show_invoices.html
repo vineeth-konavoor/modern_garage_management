@@ -1,0 +1,28 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+{%with messages=get_flashed_messages()%}
+		{%if messages%}
+			{%for msg in messages%}
+			<p>{{msg}}</p>
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+	<table>
+		<tr>
+			{%for heading in headings%}
+				<th>{{heading}}</th>
+			{%endfor%}
+			<th colspan="2" style="text-align:center">Options</th>
+		</tr>
+		{%for row in data%}
+			<tr onclick="window.location='/generate_invoice/{{row[0]}}/view';">
+				{%for val in row%}
+					<td>{{val}}</td>
+				{%endfor%}
+				
+				
+				<td><a href="/generate_invoice/{{row[0]}}/update">Update Invoice</a></td>
+				
+			</tr>
+		{%endfor%}
+	</tsble>
+</div>{%endblock%}

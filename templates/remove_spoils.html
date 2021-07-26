@@ -1,0 +1,18 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<table>
+		<tr>
+			{%for heading in headings%}
+				<th>{{heading}}</th>
+			{%endfor%}
+			<th>Option</th>
+		</tr>
+		{%for row in data%}
+			<tr>
+				{%for val in row%}
+					<td>{{val}}</td>
+				{%endfor%}
+				<td><a href="/remove_spoils_return/{{row[0]}}">Remove Spoils</a></td>
+			</tr>
+		{%endfor%}
+	</tsble>
+</div>{%endblock%}

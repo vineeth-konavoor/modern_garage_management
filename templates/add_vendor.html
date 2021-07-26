@@ -1,0 +1,13 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<table style="width:40%;">
+	<tr><th>Existing Vendors</th></tr>
+		{%for item in existing_vendors_list%}
+		<tr><td>{{item}}</td></tr>
+		{%endfor%}
+	</table>
+	<form action="/add_vendor_return" method="POST">
+		<label for="new_vendor">New Vendor:</label><br>
+		<input type="text" id="new_vendor" name="new_vendor" required><br>
+		<input type="submit" value="Submit">
+	</form>
+</div>{%endblock%}

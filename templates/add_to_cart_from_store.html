@@ -1,0 +1,9 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<h1>Add to Cart from Store</h1>
+	<form action="/add_to_cart_from_store_return/{{job_id}}/{{inv_id}}" method="post">
+	
+		<label for="units">Enter number of units of &nbsp {{current_product}} (Inventory ID={{inv_id}})</label>
+		<input type="number" name="units" step="0.01" required>
+		<input type="submit" name="submit" value="Submit">
+	</form>
+</div>{%endblock%}

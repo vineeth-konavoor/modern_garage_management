@@ -1,0 +1,27 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+
+{%with messages=get_flashed_messages()%}
+		{%if messages%}
+			{%for msg in messages%}
+			<p>{{msg}}</p>
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+
+<table style="width:40%">
+<tr><td>Current User</td><td>{{user}}</td></tr>
+<tr><th colspan="2" style="text-align:center">Login</th></tr>
+<form action="/login_return" method="POST">
+<tr>
+<td>Username</td>
+<td><input type="text" name="username" required></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><input type="password" name="password" required></td>
+</tr>
+<tr><td colspan="2" style="text-align:center"><input type="submit" value="Login"></td></tr>
+</form>
+
+</table>
+</div>{%endblock%}

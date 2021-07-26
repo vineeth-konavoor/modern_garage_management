@@ -1,0 +1,47 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<head>
+	<link rel="stylesheet" type= "text/css" href="{{url_for('static',filename='resources/stylesheet.css')}}">
+</head>
+
+	<body>
+	<div class="main">
+	{%include "sidebar_"+CURRENT_TAB+".html"%}
+	
+	<table>
+			<tr>
+			<td><a href="/edit_job_card/{{job_id}}" class='button'>Edit Job</a></td>
+			</tr>
+			<tr>
+			<th colspan="3" style="text-align:center">Job Details</th>
+			</tr>
+			<tr>
+			<td><a href="/select_for_work/{{job_id}}">Select For Working</a></td>
+			<td><a href="/view_images/{{job_id}}">View Images</a></td>
+			<td><a href="/delete_work/{{job_id}}">Delete Job</a></td>
+			</tr>
+			{%for pair in data%}
+				<tr><th colspan="2" style="text-align:center;">{{pair[0]}}</th>
+				<td>
+				<ul>
+				{%if pair[1] is iterable and (pair[1] is not string and pair[1] is not mapping) %}
+
+					{%for item in pair[1]%}
+					<li>{{item}}</li>
+					{%endfor%}
+				{%else%}
+					{{pair[1]}}
+				{%endif%}
+				</ul>
+				</td>
+				</tr>
+			{%endfor%}
+			
+			<tr>
+			<td><a href="/select_for_work/{{job_id}}">Select For Working</a></td>
+			<td><a href="/view_images/{{job_id}}">View Images</a></td>
+			<td><a href="/delete_work/{{job_id}}">Delete Job</a></td>
+			</tr>
+	</table>
+	</div>
+	</body>
+</div>{%endblock%}

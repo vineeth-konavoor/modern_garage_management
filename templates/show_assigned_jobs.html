@@ -1,0 +1,31 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+{%with messages=get_flashed_messages()%}
+		{%if messages%}
+			{%for msg in messages%}
+			<p>{{msg}}</p>
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+	<table>
+		<tr>
+			{%for heading in headings%}
+				<th>{{heading}}</th>
+			{%endfor%}
+			<th colspan="2" style="text-align:center">Cart</th>
+			<th colspan="3" style="text-align:center">Options</th>
+		</tr>
+		{%for row in data%}
+			<tr onclick="window.location='/show_job/{{row[0]}}';">
+				{%for val in row%}
+					<td>{{val}}</td>
+				{%endfor%}
+				
+				<td><a href="/view_cart/{{row[0]}}">View Spare part Cart</a></td>
+				<td><a href="/view_charges_cart/{{row[0]}}">View Charges Cart</a></td>
+				<td><a href="/finish_work/{{row[0]}}">Finish Work</a></td>
+				<td><a href="/select_for_work/{{row[0]}}">Assign to different Employee</a></td>
+				<td><a href="/unassign_work/{{row[0]}}">Unassign Job</a></td>
+			</tr>
+		{%endfor%}
+	</tsble>
+</div>{%endblock%}

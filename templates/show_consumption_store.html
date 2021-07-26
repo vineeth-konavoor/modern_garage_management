@@ -1,0 +1,39 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<h1>Consumption From Store</h1>
+	<form action='/show_consumption_store' method='POST'>
+		<label for='date_start'>Start Date:</label>
+		<input type='date' name='date_start'>
+		<label for='date_end'>End Date:</label>
+		<input type='date' name='date_end'>
+		<input type="submit" value="See Entries">
+	</form>
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Inventory ID</th>
+			<th>Job ID</th>
+			<th>Product Name</th>
+			<th>Units</th>
+			<th>Cost Price per unit</th>
+			<th>Selling Price per unit</th>
+			<th>Total Margin</th>
+		</tr>
+		{%for row in entries%}
+		<tr>
+			{%for item in row%}
+				<td>{{item}}</td>
+			{%endfor%}
+		</tr>
+		{%endfor%}
+		<tr><td><h3>Total Margin<h3></td>
+		<td>--</td>
+		<td>--</td>
+		<td>--</td>
+		<td>--</td>
+		<td>--</td>
+		<td>--</td>
+		<td>--</td>
+		<td>{{total_margin}}</td></tr>
+	</table>
+</div>{%endblock%}

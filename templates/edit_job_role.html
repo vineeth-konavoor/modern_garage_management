@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="main">
+	<table>
+	<tr><th colspan="3" style="text-align:center">Selected Job Role</th></tr>
+	<tr><th>ID</th><th>Job Role</th><th>Function Groups</th>
+		<tr>
+		<td>{{rid}}</td>
+		<td>{{job_role}}</td>
+		<td><ul>
+		{%for item in existing_function_groups%}
+		<li>{{item}}</li>
+		{%endfor%}
+		</ul>
+		</td>
+		</tr>
+		
+	</table>
+	<table>
+	<tr><th colspan="4" style="text-align:center">Edit Job Role</th></tr>
+	<tr><th>Select</th><th>Function Group</th><th>Accessible Functions</th><th>Descriptions</th>
+	<form action="/edit_job_role_return/{{rid}}" method="POST">
+		{%for item in function_groups%}
+		<tr><td><input type="checkbox" id="function_groups" name="function_groups" value="{{item[0]}}"></td>
+		<td>{{item[1]}}</td>
+		<td>{{item[2]}}</td>
+		<td>{{item[3]}}</td></tr>
+		{%endfor%}
+		<tr><td colspan="2" ><label for="new_job_role">Edited Name</label></td>
+		<td><input type="text" id="new_job_role" name="new_job_role" required></td>
+		<td colspan="2" style="text-align:center"><input type="submit" value="Submit"></td></tr>
+	</form>
+	</table>
+	</div>
+	{%endblock%}

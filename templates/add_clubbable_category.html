@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="main">
+	<table style="width:40%">
+	<tr><th>Existing Clubbale Categories</th>
+	<th>Options</th></tr>
+	{%for item in existing_clubbable%}
+				<tr>
+				<td>{{item[1]}}</td>
+				<td><a href="/remove_clubbable/{{item[0]}}">Remove From Clubbable</a></td>
+				</tr>
+			{%endfor%}
+	</table>
+	
+	<form action="/add_clubbable_category_return" method="POST">
+		<label for="cat_id">New Category:</label><br>
+		Select Category to be labelled as Clubbable in Invoice. ie, The products under this category 
+		won't be seperately visible in th invoice. They will be clubbed together:</label><br>
+		<select name="cat_id" required>
+			{%for item in existing_category_list%}
+				<option value={{item[0]}}>{{item[1]}}</option>
+			{%endfor%}
+		</select>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+	{%endblock%}

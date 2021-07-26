@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="main">
+	<table style="width:40%;">
+	<tr><th colspan="3" style="text-align:center">Existing Employees</th></tr>
+	<tr>
+	<th>ID</th>
+	<th>Name</th>
+	<th>Job Role</th>
+	</tr>
+		{%for item in existing_employee_list%}
+			<tr>
+			<td>{{item[0]}}</td>
+			<td>{{item[1]}}</td>
+			<td>{{item[2]}}</td>
+			</tr>
+		{%endfor%}
+	</table>
+
+	<table style="width:40%">
+	<tr><th colspan="2" style="text-align:center">New Employee Details</th></tr>
+	<form action="/add_employee_return" method="POST">
+		<tr><td><label for="new_employee">Name</label></td>
+		<td><input type="text" id="new_employee" name="new_employee" required></td></tr>
+		<tr><td><label for="job_role">Job Role</label></td>
+		<td><select id="job_role" name="job_role" required>
+		{%for job_role in job_roles%}
+		<option value="{{job_role[0]}}">{{job_role[1]}}</option>
+		{%endfor%}
+		</select></td></tr>
+		<tr><td><label for="username">Username</label></td>
+		<td><input type="text" id="username" name="username" required></td></tr>
+		<tr><td><label for="password">Password</label></td>
+		<td><input type="password" id="password" name="password" required></td></tr>
+		<tr><td colspan="2" style="text-align:center"><input type="submit" value="Submit"></td></tr>
+	</form>
+	</table>
+</div>
+	{%endblock%}

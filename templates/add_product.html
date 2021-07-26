@@ -1,0 +1,30 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<table style="width:40%;">
+	<tr><th>Existing Products</th></tr>
+		{%for item in existing_product_names_list%}
+		<tr><td>{{item}}</td></tr>
+		{%endfor%}
+		</table>
+	<form action="/add_product_return" method="POST">
+		<label for="product_name">Product Name:</label><br>
+		<input type="text" id="product_name" name="product_name" required><br>
+		<label for="category">Category:</label><br>
+		<select id="category" name="category" required>
+			{%for item in categories%}
+				<option value="{{item[0]}}">{{item[1]}}</option>
+			{%endfor%}
+		</select><br>
+		<label for="manufacturer">Manufacturer:</label><br>
+		<select id="manufacturer" name="manufacturer">
+			{%for item in manufacturers%}
+				<option value="{{item[0]}}">{{item[1]}}</option>
+			{%endfor%}
+		</select><br>
+		
+		
+		<label for="description">Description:</label><br>
+		<input type="text" id="description" name="description"><br>
+		<input type="submit" value="Submit">
+	</form>
+
+</div>{%endblock%}

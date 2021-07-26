@@ -1,0 +1,58 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<form action="/add_purchase_return" method="POST">
+		<label for="date_of_purchase">Date:</label><br>
+		<input type="date" value="{{date_today}}" id="date_of_purchase" name="date_of_purchase" required><br>
+		<label for="category">Category:</label><br>
+		<select id="category" name="category" required>
+			{%for item in categories%}
+				<option value="{{item}}">{{item}}</option>
+			{%endfor%}
+		</select><br>
+		<label for="manufacturer">Manufacturer:</label><br>
+		<select id="manufacturer" name="manufacturer">
+			{%for item in manufacturers%}
+				<option value="{{item}}">{{item}}</option>
+			{%endfor%}
+		</select><br>
+		<label for="product_id">Product:</label><br>
+		<select id="product_id" name="product_id" required>
+			{%for item in products%}
+				<option value="{{item[0]}}">{{item[1]}}</option>
+			{%endfor%}
+		</select><br>
+		<label for="vendor">Vendor:</label><br>
+		<select id="vendor" name="vendor">
+			{%for item in vendors%}
+				<option value="{{item}}">{{item}}</option>
+			{%endfor%}
+		</select><br>
+		<label for="invoice_number">Invoice Number:</label><br>
+		<input type="text" id="invoice_number" name="invoice_number" required><br>
+		
+		<label for="units">Number of Units Purchased:</label><br>
+		<input type="number" id="units" name="units" required><br>
+		
+		<input type="radio"  id ="price_per_unit" name="pricing_option" value="price_per_unit" required>
+		<label for="price_per_unit">Price given for a unit</label><br>
+		
+		<input type="radio"  id ="price_per_box" name="pricing_option" value="price_per_box" required>
+		<label for="price_per_box">Price given for a box of above mentioned units</label><br>
+		
+		
+		
+		<label for="cp">Cost Price:</label><br>
+		<input type="number" id="cp" name="cp" required><br>
+		
+		<label for="sp">Selling Price:</label><br>
+		<input type="number" id="sp" name="sp" required><br>
+		
+		
+		
+		<label for="remarks">Remarks:</label><br>		
+		<input type="text" id="remarks" name="remarks"><br>
+		<input type="submit" value="Submit">
+	</form>
+<script type="text/javascript">
+  document.getElementById('date').value = Date();
+</script>
+</div>{%endblock%}

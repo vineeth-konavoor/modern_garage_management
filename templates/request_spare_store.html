@@ -1,0 +1,84 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+{%with messages=get_flashed_messages()%}
+		{%if messages%}
+			{%for msg in messages%}
+			<p>{{msg}}</p>
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+	<form action="/view_cart/{{job_id}}" style="padding-top:10px;">
+	<input type="submit" value="Main Cart">
+	</form>
+	<h3>Select Category to add new item to Cart</h3>
+	<form action="/request_spare_store/{{job_id}}" method="POST">
+		<label for="categories">Categories</label>
+		<select name="category">
+			{%for item in categories%}
+				<option value="{{item}}">{{item}}
+			{%endfor%}
+		</select>
+		<input type="submit" name="submit" value="Search">
+	</form>
+
+	<table>
+	<tr>
+		<th>Inventory ID</th>
+		<th>Manufacturer</th>
+		<th>Product</th>
+		<th>Lot</th>
+		<th>Add to Cart</th>
+	</tr>
+	{%for item in products%}
+		<tr>
+			<td>{{item[0]}}</td>
+			<td>{{item[1]}}</td>
+			<td>{{item[2]}}</td>
+			<td>{{item[3]}}</td>
+			<td><a href="/add_to_cart_from_store/{{job_id}}/{{item[0]}}">Add</s></td>
+		</tr>
+	{%endfor%}
+	</table>
+	<h3>Already in Cart</h3>
+	<h5>Instore Requests</h5>
+	<table>
+		<tr>
+			<th>Inventory ID</th>
+			<th>Name</th>
+			<th>Lot</th>
+			<th>Units</th>
+			<th>Return</th>
+		</tr>
+		
+		{%for item in cart_items_store%}
+			<tr>
+				<td>{{item[0]}}</td>
+				<td>{{item[1]}}</td>
+				<td>{{item[2]}}</td>
+				<td>{{item[3]}}</td>
+				<td><a href="/return_to_stock/{{job_id}}/{{item[0]}}/{{item[3]}}">Return item to stock</a></td>
+			</tr>
+		{%endfor%}
+	</table>
+	<h5>Outside Requests</h5>
+	<table>
+		<tr>
+			<th>Request ID</th>
+			<th>Name</th>
+			<th>Units</th>
+			<th>Status</th>
+			<th>Return</th>
+		</tr>
+		
+		{%for item in cart_items_out%}
+			<tr>
+				<td>{{item[0]}}</td>
+				<td>{{item[1]}}</td>
+				<td>{{item[2]}}</td>
+				<td>{{item[3]}}</td>
+				<td><a href="/delete_part_request_out/{{job_id}}/{{item[0]}}/{{item[1]}}">Remove Request</td>
+				
+			</tr>
+		{%endfor%}
+	</table>
+	
+</div>{%endblock%}

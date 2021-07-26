@@ -1,0 +1,15 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<table style="width:40%;">
+	<tr><th>Existing Types of Labour Cahrges</th></tr>
+		{%for item in types%}
+			<tr><td>
+			{{item[0]}}.&nbsp{{item[1]}}
+			</td></tr>
+		{%endfor%}
+	</table>
+	<form action="/add_type_of_labour_charge_return" method="POST">
+		<label for="new_type">New Type:</label><br>
+		<input type="text" id="new_type" name="new_type" required><br>
+		<input type="submit" value="Submit">
+	</form>
+</div>{%endblock%}

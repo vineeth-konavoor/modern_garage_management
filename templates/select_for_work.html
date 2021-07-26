@@ -1,0 +1,17 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<form action="/select_for_work_return/{{job_id}}" method="POST">
+		<label for="date_assigned">Date of Assignment</label>
+		<input type="date" name="date_assigned" id="date_assigned" value="{{date_today}}" required><br>
+		<label for="time_assigned">Time of Assignment</label>
+		<input type="time" name="time_assigned" id="time_assigned" value="{{time_now}}" required><br>
+		<label for="employee_id">Select Employee</label>
+		<select name="employee_id" required>
+					{%for item in emp_lst%}
+						<option value="{{item[0]}}">
+						{{item[0]}}.&nbsp{{item[1]}}
+						</option>
+					{%endfor%}
+		</select>
+		<input type="submit" value="Submit">
+	</form>
+</div>{%endblock%}

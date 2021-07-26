@@ -1,0 +1,131 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<form action="/generate_invoice_return/{{option}}" method="POST" target="_blank">
+	<table>
+	
+	
+	<tr><td>Job ID</td><td>{{job_details[0]}}</td></tr>
+	<tr><td>Customer Name</td><td>{{job_details[1]}}</td></tr>
+	<tr><td>Company</td><td>{{job_details[2]}}</td></tr>
+	<tr><td>Model</td><td>{{job_details[3]}}</td></tr>
+	<tr><td>Variant</td><td>{{job_details[4]}}</td></tr>
+	<tr><td>Make</td><td>{{job_details[5]}}</td></tr>
+	<tr><td>Insurance</td><td>{{job_details[6]}}</td></tr>
+	<tr><td>Insurance File Number</td><td>{{job_details[7]}}</td></tr>
+	<tr><td>Registration Number</td><td>{{job_details[8]}}</td></tr>
+	<tr><td>Phone Number</td><td>{{job_details[9]}}</td></tr>
+	
+	<input type="hidden" name="job_id" value="{{job_details[0]}}">
+	<input type="hidden" name="customer_name" value="{{job_details[1]}}">
+	<input type="hidden" name="company" value="{{job_details[2]}}">
+	<input type="hidden" name="model" value="{{job_details[3]}}">
+	<input type="hidden" name="variant" value="{{job_details[4]}}">
+	<input type="hidden" name="make" value="{{job_details[5]}}">
+	<input type="hidden" name="insurance" value="{{job_details[6]}}">
+	<input type="hidden" name="insurance_file_number" value="{{job_details[7]}}">
+	<input type="hidden" name="registration_number" value="{{job_details[8]}}">
+	<input type="hidden" name="phone_number" value="{{job_details[9]}}">
+	</table>
+	<table>
+		<tr><th colspan="3" style="text-align:center">From Store</th>{%if option=="generate" or option=="update"%}<th style="text-align:center;color:yellow;"><a style="color:#581845;" href="/view_cart/{{job_details[0]}}">Goto Spare Cart</a></th>{%endif%}</tr>
+		<tr>
+			<th>Sl No</th>
+			<th>Name</th>
+			<th>Units</th>
+			<th>Price</th>
+		</tr>
+		{%for item in cart_items_store%}
+			<tr>
+				<td>{{item[0]}}</td>
+				<td>{{item[1]}}</td>
+				<td>{{item[2]}}</td>
+				<td>{{item[3]}}</td>
+				<input type="hidden" name="cart_items_store_name[]" value="{{item[1]}}">
+				<input type="hidden" name="cart_items_store_units[]" value="{{item[2]}}">
+				<input type="hidden" name="cart_items_store_price[]" value="{{item[3]}}">
+			</tr>
+		{%endfor%}
+		<tr>
+			<td><h3>Total from Store</h3></td>
+			<td>--</td>
+			<td>--</td>
+			<td><h3>{{total_amount_store}}</h3></td>
+		</tr>
+	
+	<tr><th colspan="3" style="text-align:center">From Outside</th>{%if option=="generate" or option=="update"%}<th style="text-align:center;color:yellow;"><a style="color:#581845;" href="/view_cart/{{job_details[0]}}">Goto Spare Cart</a></td>{%endif%}</tr>
+	
+		<tr>
+			<th>Sl No</th>
+			<th>Name</th>
+			<th>Units</th>
+			<th>Price</th>
+		</tr>
+		{%for item in cart_items_out%}
+			<tr>
+				<td>{{item[0]}}</td>
+				<td>{{item[1]}}</td>
+				<td>{{item[2]}}</td>
+				<td>{{item[3]}}</td>
+				<input type="hidden" name="cart_items_out_name[]" value="{{item[1]}}">
+				<input type="hidden" name="cart_items_out_units[]" value="{{item[2]}}">
+				<input type="hidden" name="cart_items_out_price[]" value="{{item[3]}}">
+				
+			</tr>
+		{%endfor%}
+		<tr>
+			<td colspan="3">Total from Outside</td>
+		
+			<td><h3>{{total_amount_out}}</h3></td>
+		</tr>
+		
+	</table>
+	
+	<table>
+		<tr><th colspan="3" style="text-align:center">Labour Charges</th>{%if option=="generate" or option=="update"%}<th style="text-align:center;color:yellow;"><a style="color:#581845;" href="/view_charges_cart/{{job_details[0]}}">Goto Charge Cart</a></td>{%endif%}</tr>
+		<tr>
+			<th>Sl No</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+		</tr>
+		{%for item in labour_charge_data%}
+			<tr>
+				<td>{{item[0]}}</td>
+				<td>{{item[1]}}</td>
+				<td>{{item[2]}}</td>
+				<td>{{item[3]}}</td>
+				<input type="hidden" name="labour_charge_name[]" value="{{item[1]}}">
+				<input type="hidden" name="labour_charge_description[]" value="{{item[2]}}">
+				<input type="hidden" name="labour_charge_price[]" value="{{item[3]}}">
+				
+				
+			</tr>
+		{%endfor%}
+		<tr>
+			<td colspan="3">Total Labour Charge</td>
+			
+			<td><h3>{{total_labour_charge}}</h3></td>
+		</tr>
+		
+		
+		<tr>
+			<th colspan="3" style="text-align:center">Total Amount</th>
+			
+			<th>{{total_amount}}</th>
+		</tr>
+		<tr>
+			<td colspan="3" style="text-align:center">Advance</td>
+			
+			<td>{{advance}}</td>
+		</tr>
+		
+		<tr><td colspan="3" style="text-align:center">Discounted Price</td><td><input type="number" name="discounted_price" step="0.01" {%if discounted_price==0%}value="{{total_amount}}"{%else%}value="{{discounted_price}}"{%endif%} {%if option!="generate" and option!="update"%}readonly="readonly"{%endif%}></td></tr>
+		<input type="hidden" name="total_amount_store" value="{{total_amount_store}}">
+		<input type="hidden" name="total_amount_out" value="{{total_amount_out}}">
+		<input type="hidden" name="total_labour_charge" value="{{total_labour_charge}}">
+		<input type="hidden" name="advance" value="{{advance}}">
+		<input type="hidden" name="total_amount" value="{{total_amount}}">
+		<tr><td colspan="3" style="text-align:center">Note</td><td><input type="text" name="invoice_note" {%if option!="generate" and option!="update"%}readonly="readonly"{%endif%}></td></tr>
+		<tr><td colspan="4" style="text-align:center"><input type="submit" value="Generate Invoice"></td></tr>
+	</table>
+	</form>
+</div>{%endblock%}

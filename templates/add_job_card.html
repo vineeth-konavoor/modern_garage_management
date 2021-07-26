@@ -1,0 +1,341 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<table>
+	<form action="/add_job_card_return" method="POST" enctype="multipart/form-data">
+		<tr><th colspan="2" style="text-align:center">Date, Time and Insurance</th></tr>
+		<tr><td><label for="date_in">Date In:</label></td><td>
+		<input type="date" value="{{date_today}}" id="date_in" name="date_in" required></td></tr>
+		
+		<tr><td><label for="time_in">Time In:</label></td><td>
+		<input type="time" value="{{time_now}}" id="time_in" name="time_in" required></td></tr>
+		
+		<tr><td rowspan="4"><label for="insurance">Insurance:</label></td>
+		
+		<td><input type="radio" value="Non Insured" id="insurance" name="insurance" required>Not Insured</input></td></tr>
+		<tr><td><input type="radio" value="Qatar General Insurance" id="insurance" name="insurance" required>Qatar General Insurance</input></td></tr>
+		<tr><td><input type="radio" value="General Takaful Insurance" id="insurance" name="insurance" required>General Takaful Insurance</input></tr></td>
+		<tr><td><input type="radio" value="Others" id="insurance" name="insurance" required>Other</input></tr></td>
+		</td></tr>
+		<tr><td>Insurance File Number</td><td>
+		<input type="text" name="insurance_file_number" id="insurance_file_number"></td></tr>
+		<tr><th colspan="2" style="text-align:center">Customer Details</th></tr>
+		<tr><td><label for="customer_name">Customer's Name:</label></td><td>
+		<input type="text"  id="customer_name" name="customer_name"></td></tr>
+		<tr><td><label for="customer_id_num">Customer's ID Number:</label></td><td>
+		<input type="text"  id="customer_id_num" name="customer_id_num"></td></tr>
+		<tr><td><label for="phone_num">Phone Number:</label></td><td>
+		<input type="tel"  id="phone_num" name="phone_num" required></td></tr>
+		<tr><td><label for="email">Email ID</label></td><td>
+		<input type="email"  id="email" name="email"></td></tr>
+		
+		<tr><th colspan="2" style="text-align:center">Type of Work</th></tr>
+		
+		
+		
+		<tr><td><label for="customer_complaints">Problems reported by customer:</label></td><td>
+		<textarea name="customer_complaints" id="customer_complaints" rows="15" cols="30"></textarea></td></tr>
+		
+		<tr>
+		<td><table>
+		<tr><td><label for="mechanical"> Mechanical </label></td><td>
+		<input type="checkbox" id="mechanical" name="type_of_job[]" value="Mechanical"></td></tr>
+		<tr><td><label for="painting">Painting </label></td><td>
+		<input type="checkbox" id="painting" name="type_of_job[]" value="Painting"></td></tr>
+		<tr><td><label for="dent_removal"> Dent Removal </label></td><td>
+		<input type="checkbox" id="dent_removal" name="type_of_job[]" value="Dent Removal"></td></tr>
+		
+		<tr><td><label for="overall_checkup"> Overall Checkup </label></td><td>
+		<input type="checkbox" id="overall_checkup" name="type_of_job[]" value="Overall Checkup"></td></tr>
+		
+		</table></td>
+		
+		<td><table>
+		<tr><td><label for="electrical"> Electrical </label></td><td>
+		<input type="checkbox" id="electrical" name="type_of_job[]" value="Electrical"></td></tr>
+		<tr><td><label for="polishing">Polishing </label></td><td>
+		<input type="checkbox" id="polishing" name="type_of_job[]" value="Polishing"></td></tr>
+		<tr><td><label for="ac_work"> A.C Work </label></td><td>
+		<input type="checkbox" id="ac_work" name="type_of_job[]" value="A.C Work"></td></tr>
+		<tr><td><label for="other"> Other </label></td><td>
+		<input type="checkbox" id="other" name="type_of_job[]" value="Other"></td></tr>
+		
+		</table></td>
+		</tr>
+		
+		
+		
+		<tr><th colspan="2" style="text-align:center">Tasks to be Carried out</th></tr>
+		<tr><td colspan="2" style="text-align:center">Mechanical</td></tr>
+		<tr>
+		
+		<td><table>
+		<tr><td><label for="engine_oil_change"> Engine Oil Change </label></td><td>
+		<input type="checkbox" id="engine_oil_change" name="tasks[]" value="Engine Oil Change"></td></tr>
+		<tr><td><label for="gear_oil_change"> Gear Oil Change </label></td><td>
+		<input type="checkbox" id="gear_oil_change" name="tasks[]" value="Gear Oil Change"></td></tr>
+		<tr><td><label for="brake_oil_change"> Brake Oil Change </label></td><td>
+		<input type="checkbox" id="break_oil_change" name="tasks[]" value="Brake Oil Change"></td></tr>
+		<tr><td><label for="air_filter_change"> Air Filter Change </label></td><td>
+		<input type="checkbox" id="air_filter_change" name="tasks[]" value="Air Filter Change"></td></tr>
+		<tr><td><label for="spark_plug_change"> Spark Plug Change </label></td><td>
+		<input type="checkbox" id="spark_plug_change" name="tasks[]" value="Spark Plug Change"></td></tr>
+		<tr><td><label for="wiper_blade_change"> Wiper Blade Change </label></td><td>
+		<input type="checkbox" id="wiper_blade_change" name="tasks[]" value="Wiper Blade Change"></td></tr>
+		</table></td>
+		
+		<td><table>
+		<tr><td><label for="engine_oil_filter_change"> Engine Oil Filter Change </label></td><td>
+		<input type="checkbox" id="engine_oil_filter_change" name="tasks[]" value="Engine Oil Filter Change"></td></tr>
+		<tr><td><label for="gear_oil_filter_change"> Gear Oil Filter Change </label></td><td>
+		<input type="checkbox" id="gear_oil_filter_change" name="tasks[]" value="Gear Oil Filter Change"></td></tr>
+		<tr><td><label for="brake_pad_change"> Brake Pad Change </label></td><td>
+		<input type="checkbox" id="brake_pad_change" name="tasks[]" value="Brake Pad Change"></td></tr>
+		<tr><td><label for="ac_filter_change"> A.C Filter Change </label></td><td>
+		<input type="checkbox" id="ac_filter_change" name="tasks[]" value="A.C Filter Change"></td></tr>
+		<tr><td><label for="fuel_filter_change"> Fuel Filter Change </label></td><td>
+		<input type="checkbox" id="fuel_filter_change" name="tasks[]" value="Fuel Filter Change"></td></tr>
+		<tr><td><label for="battery_change"> Batery Change </label></td><td>
+		<input type="checkbox" id="battery_change" name="tasks[]" value="Battery Change"></td></tr>
+		</table></td>
+		
+		</tr>
+		
+		
+		</table>
+		<table>
+		<tr><td colspan="7" style="text-align:center">Painting</td></tr>
+		<tr><td>Part</td><td>Front Left</td><td>Front Right</td><td>Back Left</td><td>Back Right</td><td>Front Full</td><td>Back Full</td></tr>
+		<tr><td>Bumper</td><td><input type="checkbox" id="bumper_front_left" name="tasks[]" value="Bumper Front Left Painting"></td>
+		<td><input type="checkbox" id="bumper_front_right" name="tasks[]" value="Bumper Front Right Painting"></td>
+		<td><input type="checkbox" id="bumper_back_left" name="tasks[]" value="Bumper Back Left Painting"></td>
+		<td><input type="checkbox" id="bumper_back_right" name="tasks[]" value="Bumper Back Right Painting"></td>
+		<td><input type="checkbox" id="bumper_front_full" name="tasks[]" value="Bumper Front Full Painting"></td>
+		<td><input type="checkbox" id="bumper_back_full" name="tasks[]" value="Bumper Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Fender</td><td><input type="checkbox" id="fender_front_left" name="tasks[]" value="Fender Front Left Painting"></td>
+		<td><input type="checkbox" id="fender_front_right" name="tasks[]" value="Fender Front Right Painting"></td>
+		<td><input type="checkbox" id="fender_back_left" name="tasks[]" value="Fender Back Left Painting"></td>
+		<td><input type="checkbox" id="fender_back_right" name="tasks[]" value="Fender Back Right Painting"></td>
+		<td><input type="checkbox" id="fender_front_full" name="tasks[]" value="Fender Front Full Painting"></td>
+		<td><input type="checkbox" id="fender_back_full" name="tasks[]" value="Fender Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Door</td><td><input type="checkbox" id="door_front_left" name="tasks[]" value="Door Front Left Painting"></td>
+		<td><input type="checkbox" id="door_front_right" name="tasks[]" value="Door Front Right Painting"></td>
+		<td><input type="checkbox" id="door_back_left" name="tasks[]" value="Door Back Left Painting"></td>
+		<td><input type="checkbox" id="door_back_right" name="tasks[]" value="Door Back Right Painting"></td>
+		<td><input type="checkbox" id="door_front_full" name="tasks[]" value="Door Front Full Painting"></td>
+		<td><input type="checkbox" id="door_back_full" name="tasks[]" value="Door Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Bonnet</td><td><input type="checkbox" id="bonnet_front_left" name="tasks[]" value="Bonnet Front Left Painting"></td>
+		<td><input type="checkbox" id="bonnet_front_right" name="tasks[]" value="Bonnet Front Right Painting"></td>
+		<td><input type="checkbox" id="bonnet_back_left" name="tasks[]" value="Bonnet Back Left Painting"></td>
+		<td><input type="checkbox" id="bonnet_back_right" name="tasks[]" value="Bonnet Back Right Painting"></td>
+		<td><input type="checkbox" id="bonnet_front_full" name="tasks[]" value="Bonnet Front Full Painting"></td>
+		<td><input type="checkbox" id="bonnet_back_full" name="tasks[]" value="Bonnet Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Trunk</td><td><input type="checkbox" id="fender_front_left" name="tasks[]" value="Trunk Front Left Painting"></td>
+		<td><input type="checkbox" id="trunk_front_right" name="tasks[]" value="Trunk Front Right Painting"></td>
+		<td><input type="checkbox" id="trunk_back_left" name="tasks[]" value="Trunk Back Left Painting"></td>
+		<td><input type="checkbox" id="trunk_back_right" name="tasks[]" value="Trunk Back Right Painting"></td>
+		<td><input type="checkbox" id="trunk_front_full" name="tasks[]" value="Trunk Front Full Painting"></td>
+		<td><input type="checkbox" id="trunk_back_full" name="tasks[]" value="Trunk Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Roof</td><td><input type="checkbox" id="roof_front_left" name="tasks[]" value="Roof Front Left Painting"></td>
+		<td><input type="checkbox" id="roof_front_right" name="tasks[]" value="Roof Front Right Painting"></td>
+		<td><input type="checkbox" id="roof_back_left" name="tasks[]" value="Roof Back Left Painting"></td>
+		<td><input type="checkbox" id="roof_back_right" name="tasks[]" value="Roof Back Right Painting"></td>
+		<td><input type="checkbox" id="roof_front_full" name="tasks[]" value="Roof Front Full Painting"></td>
+		<td><input type="checkbox" id="roof_back_full" name="tasks[]" value="Roof Back Full Painting"></td></tr>
+		
+		
+		<tr><td>Rocker Panel</td><td><input type="checkbox" id="rocker_panel_front_left" name="tasks[]" value="Rocker Panel Front Left Painting"></td>
+		<td><input type="checkbox" id="rocker_panel_front_right" name="tasks[]" value="Rocker PanelFront Right Painting"></td>
+		<td><input type="checkbox" id="rocker_panel_back_left" name="tasks[]" value="Rocker Panel Back Left Painting"></td>
+		<td><input type="checkbox" id="rocker_panel_back_right" name="tasks[]" value="Rocker Panel Back Right Painting"></td>
+		<td><input type="checkbox" id="rocker_panel_front_full" name="tasks[]" value="Rocker Panel Front Full Painting"></td>
+		<td><input type="checkbox" id="rocker_panel_back_full" name="tasks[]" value="Rocker Panel Back Full Painting"></td></tr>
+		
+		
+		
+		<tr><td colspan="7" style="text-align:center">Dent Removal</td></tr>
+		<tr><td>Part</td><td>Front Left</td><td>Front Right</td><td>Back Left</td><td>Back Right</td><td>Front Full</td><td>Back Full</td></tr>
+		<tr><td>Bumper</td><td><input type="checkbox" id="bumper_front_left" name="tasks[]" value="Bumper Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="bumper_front_right" name="tasks[]" value="Bumper Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="bumper_back_left" name="tasks[]" value="Bumper Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="bumper_back_right" name="tasks[]" value="Bumper Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="bumper_front_full" name="tasks[]" value="Bumper Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="bumper_back_full" name="tasks[]" value="Bumper Back Full Dent Removal"></td></tr>
+		
+		<tr><td>Fender</td><td><input type="checkbox" id="fender_front_left" name="tasks[]" value="Fender Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="fender_front_right" name="tasks[]" value="Fender Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="fender_back_left" name="tasks[]" value="Fender Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="fender_back_right" name="tasks[]" value="Fender Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="fender_front_full" name="tasks[]" value="Fender Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="fender_back_full" name="tasks[]" value="Fender Back Full Dent Removal"></td></tr>
+		
+		
+		<tr><td>Door</td><td><input type="checkbox" id="door_front_left" name="tasks[]" value="Door Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="door_front_right" name="tasks[]" value="Door Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="door_back_left" name="tasks[]" value="Door Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="door_back_right" name="tasks[]" value="Door Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="door_front_full" name="tasks[]" value="Door Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="door_back_full" name="tasks[]" value="Door Back Full Dent Removal"></td></tr>
+		
+		
+		<tr><td>Bonnet</td><td><input type="checkbox" id="bonnet_front_left" name="tasks[]" value="Bonnet Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="bonnet_front_right" name="tasks[]" value="Bonnet Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="bonnet_back_left" name="tasks[]" value="Bonnet Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="bonnet_back_right" name="tasks[]" value="Bonnet Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="bonnet_front_full" name="tasks[]" value="Bonnet Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="bonnet_back_full" name="tasks[]" value="Bonnet Back Full Dent Removal"></td></tr>
+		
+		
+		<tr><td>Trunk</td><td><input type="checkbox" id="fender_front_left" name="tasks[]" value="Trunk Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="trunk_front_right" name="tasks[]" value="Trunk Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="trunk_back_left" name="tasks[]" value="Trunk Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="trunk_back_right" name="tasks[]" value="Trunk Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="trunk_front_full" name="tasks[]" value="Trunk Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="trunk_back_full" name="tasks[]" value="Trunk Back Full Dent Removal"></td></tr>
+		
+		
+		<tr><td>Roof</td><td><input type="checkbox" id="roof_front_left" name="tasks[]" value="Roof Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="roof_front_right" name="tasks[]" value="Roof Front Right Dent Removal"></td>
+		<td><input type="checkbox" id="roof_back_left" name="tasks[]" value="Roof Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="roof_back_right" name="tasks[]" value="Roof Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="roof_front_full" name="tasks[]" value="Roof Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="roof_back_full" name="tasks[]" value="Roof Back Full Dent Removal"></td></tr>
+		
+		
+		<tr><td>Rocker Panel</td><td><input type="checkbox" id="rocker_panel_front_left" name="tasks[]" value="Rocker Panel Front Left Dent Removal"></td>
+		<td><input type="checkbox" id="rocker_panel_front_right" name="tasks[]" value="Rocker PanelFront Right Dent Removal"></td>
+		<td><input type="checkbox" id="rocker_panel_back_left" name="tasks[]" value="Rocker Panel Back Left Dent Removal"></td>
+		<td><input type="checkbox" id="rocker_panel_back_right" name="tasks[]" value="Rocker Panel Back Right Dent Removal"></td>
+		<td><input type="checkbox" id="rocker_panel_front_full" name="tasks[]" value="Rocker Panel Front Full Dent Removal"></td>
+		<td><input type="checkbox" id="rocker_panel_back_full" name="tasks[]" value="Rocker Panel Back Full Dent Removal"></td></tr>
+		
+		
+		
+		
+		
+		
+		
+		</table>
+		<table>
+		<tr><td><label for="notes">Notes:</label></td><td>
+		<textarea name="notes" id="notes" rows="15" cols="30"></textarea></td></tr>
+
+		
+		<tr><th colspan="2" style="text-align:center">Vehicle Details</th></tr>
+		<tr><td><label for="company">Company:</label></td><td>
+		<input type="text"  id="company" name="company"></td></tr>
+		<tr><td><label for="model">Model:</label></td><td>
+		<input type="text"  id="model" name="model" required></td></tr>
+		<tr><td><label for="variant">Variant:</label></td><td>
+		<input type="text"  id="variant" name="variant" ></td></tr>
+		<tr><td><label for="make">Make(Year):</label></td><td>
+		<input type="number"  id="make" name="make" ></td></tr>
+		<tr><td><label for="reg_number">Registration Number:</label></td><td>
+		<input type="text"  id="reg_number" name="reg_number" required></td></tr>
+		<tr><td><label for="chasis_number">Chasis Number:</label></td><td>
+		<input type="text"  id="chasis_number" name="chasis_number" ></td></tr>
+		<tr><td><label for="engine_number">Engine Number:</label></td><td>
+		<input type="text"  id="engine_number" name="engine_number" ></td></tr>
+		<tr><td><label for="km">Kilometers :</label></td><td>
+		<input type="number"  id="km" name="km" value="0"></td></tr>
+		<tr><th colspan="2" style="text-align:center">Estimations</th></tr>
+		<tr><tr><td colspan="2" style="text-align:center">Estimated Payment and Delivery Details</td></tr>
+		<tr><td><label for="estimated_delivery_date">Estimated Date of Completion:</label></td><td>
+		<input type="date"  id="estimated_delivery_date" name="estimated_delivery_date" value="{{date_today}}"></td>
+		
+		<tr><td><label for="estimated_time">Estimated time for completion of work:</label></td><td>
+		<input type="time"  id="estimated_time" name="estimated_time" value="{{time_now}}"></td></tr>
+		</tr>
+		<tr><td><label for="estimated_labour_charge">Estimated Labour Charge:</label></td><td>
+		<input type="number"  id="estimated_labour_charge" name="estimated_labour_charge" value="0" onChange="get_sum()"></td></tr>
+		<tr><td><label for="estimated_part_cost">Estimated Spare Parts Cost:</label></td><td>
+		<input type="number"  id="estimated_part_cost" name="estimated_part_cost" value="0" onChange="get_sum()"></td></tr>
+		
+		
+		<tr><td><label for="total_estimated_cost">Total Estimated Cost:</label></td><td>
+		<input type="number"  id="total_estimated_cost" name="total_estimated_cost" value="0" disabled></td></tr>
+		
+		
+		<tr><td><label for="discount">Discounted Price:</label></td><td>
+		<input type="number"  id="discount" name="discount" value="0"></td></tr>
+		<tr><td><label for="advance">Advance Cash Accepted:</label></td><td>
+		<input type="number"  id="advance" name="advance" value="0"></td></tr>
+		<tr><th colspan="2" style="text-align:center">Dashboard Indicators</th></tr>
+		
+		
+		<tr>
+		
+		<td><table>
+		<tr><td><label for="engine_light"> Check Engine Light: </label></td><td>
+		<input type="checkbox" id="engine_light" name="dash_ind[]" value="Engine Light"></td></tr>
+		<tr><td><label for="oil_light">Oil Light: </label></td><td>
+		<input type="checkbox" id="oil_light" name="dash_ind[]" value="Oil Light"></td></tr>
+		<tr><td><label for="air_bag_light"> Air Bag Light: </label></td><td>
+		<input type="checkbox" id="air_bag_light" name="dash_ind[]" value="Airbag Light"></td></tr>
+		<tr><td><label for="handbrake_light"> Handbrake Light: </label></td><td>
+		<input type="checkbox" id="handbrake_light" name="dash_ind[]" value="Handbrake Light"></td></tr>
+		<tr><td><label for="battery_light"> Battery Light: </label></td><td>
+		<input type="checkbox" id="battery_light" name="dash_ind[]" value="Battery Light"></td></tr>
+		<tr><td><label for="security_light"> Security Light: </label></td><td>
+		<input type="checkbox" id="security_light" name="dash_ind[]" value="Security Light"></td></tr>
+		<tr><td><label for="traction_control_malfunction_light"> Traction Malfunction Light: </label></td><td>
+		<input type="checkbox" id="traction_control_malfunction_light" name="dash_ind[]" value="Traction Control Malfunction Light"></td></tr>
+		<tr><td><label for="door_lock_light"> Door Lock Light: </label></td><td>
+		<input type="checkbox" id="door_lock_light" name="dash_ind[]" value="Door Lock Light"></td></tr>
+		</table></td>
+		
+		<td><table>
+		<tr><td><label for="engine_temperature"> Temperature Light: </label></td><td>
+		<input type="checkbox" id="engine_temperature" name="dash_ind[]" value="Temperature Light"></td></tr>
+		<tr><td><label for="tyre_pressure">Tyre Pressure Light: </label></td><td>
+		<input type="checkbox" id="oil_light" name="dash_ind[]" value="Tyre Pressure Light"></td></tr>
+		<tr><td><label for="traction_control_light"> Traction Control Light: </label></td><td>
+		<input type="checkbox" id="traction_control_light" name="dash_ind[]" value="Traction Control Light"></td></tr>
+		<tr><td><label for="abs_light"> ABS Light: </label></td><td>
+		<input type="checkbox" id="abs_light" name="dash_ind[]" value="ABS Light"></td></tr>
+		<tr><td><label for="low_fuel_light"> Low Fuel Light: </label></td><td>
+		<input type="checkbox" id="low_fuel_light" name="dash_ind[]" value="Low Fuel Light"></td></tr>
+		<tr><td><label for="washer_fluid_light"> Washer Fluid Light: </label></td><td>
+		<input type="checkbox" id="washer_fluid_light" name="dash_ind[]" value="Washer Fluid Light"></td></tr>
+		<tr><td><label for="engine_oil_change_light"> Engine Oil Change Light: </label></td><td>
+		<input type="checkbox" id="engine_oil_change_light" name="dash_ind[]" value="Engine Oil Change Light"></td></tr>
+		<tr><td><label for="seat_belt_light"> Seat Belt Light: </label></td><td>
+		<input type="checkbox" id="seat_belt_light" name="dash_ind[]" value="Seat Belt Light"></td></tr>
+		</table></td>
+		
+		
+		
+		</tr>
+		
+		
+		
+		<tr><td><label for="dashboard_cmnt">Notes on Dashboard Indicators:</label></td><td>
+		<input type="text"  id="dashboard_cmnt" name="dashboard_cmnt"></td></tr>
+		<tr><th colspan="2" style="text-align:center">Photos</th></tr>
+		<tr><td><label for="img_files">Photos of Vehicle</label></td><td>
+		<input type="file" name="img_files[]" accept="image/*" multiple="" ></td></tr>
+		<tr><td colspan="2" style="text-align:center"><input type="submit" value="Add Job"></td></tr>
+	</form>
+	</table>
+</div>
+<script type="text/javascript">
+    function get_sum()
+    {
+        // Capture the entered values of two input boxes
+        var lc = document.getElementById('estimated_labour_charge').value;
+        var sc = document.getElementById('estimated_part_cost').value;
+
+        // Add them together and display
+        var sum = parseFloat(lc)+parseFloat(sc)
+		document.getElementById('total_estimated_cost').value = parseFloat(sum);
+    }
+</script>
+{%endblock%}

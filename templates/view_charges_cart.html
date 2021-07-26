@@ -1,0 +1,32 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+{%with messages=get_flashed_messages()%}
+		{%if messages%}
+			{%for msg in messages%}
+			<p>{{msg}}</p>
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+	
+	<h2>Already in Charges Cart</h2>
+	<table>
+		<tr>
+			<th>Charge Transaction ID</th>
+			<th>Type of Charge</th>
+			
+			<th>Description</th>
+			<th>Amount</th>
+			<th>Remove Transaction</th>
+		</tr>
+		{%for row in data%}
+			<tr>
+				{%for item in row%}
+					<td>{{item}}</td>
+				{%endfor%}
+				<td><a href="/remove_from_charges_cart/{{row[0]}}">Remove Charge</a></td>
+			</tr>
+		{%endfor%}
+		<tr><td><h3>Total</h3></td><td></td><td></td><td><h3>{{total}}</h3></td><td></td></tr>
+	</table>
+	<h3><a href="/add_to_charges_cart/{{job_id}}">Add to Charges Cart</a></h3>
+
+</div>{%endblock%}

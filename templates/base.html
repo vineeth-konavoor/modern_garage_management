@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>MGM - Abdulla Garage</title>
+	<link rel="stylesheet" type= "text/css" href="{{url_for('static',filename='resources/stylesheet.css')}}">
+</head>
+{%include "sidebar_"+CURRENT_TAB+".html"%}
+	{%include "topbar.html"%}
+<body>
+    
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Invoice</title>
+
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(3) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(3) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="3">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="/static/resources/logo.jpg" style="width: 100%; max-width: 300px" />
+								</td>
+								<td></td>
+								<td>
+									Invoice #: {{invoice_number}}<br />
+									Created: {{date_of_generation_of_invoice}}<br />
+									{{if_due_date_specified}}:{{due_date}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="3">
+						<table>
+							<tr>
+								<td>
+									{{customer_name}}<br />
+									{{phone_number}}<br />
+									{{company}},{{model}}<br />
+									{{registration_number}}<br />
+									{{insurance}}<br />
+									{{insurance_file_number}}<br />
+									
+								</td>
+								<td></td>
+								<td>
+									Abdulla Automobile Garage.<br />
+									Al Wakra Main Street<br />
+									Near Nissan spare parts<br />
+									Mob:+974 55854704,31206877<br />
+									Tel:44642734<br />
+									email:abdullagarageqatar@gmail.com
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Amount Due</td>
+					<td></td>
+					<td>{{discounted_price}}</td>
+				</tr>
+
+				<tr class="details">
+					<td></td>
+					<td></td>
+				</tr>
+				{%if items_from_store==True%}
+				<tr><td colspan="3" style="text-align:center;">From Store</td></tr>
+				<tr class="heading">
+					<td>Item</td>
+					<td>Units</td>
+					<td>Price</td>
+				</tr>
+				
+				{%for item in cart_items_store_name%}
+				<tr class="item">
+					
+					<td>{{item}}</td>
+					<td>{{cart_items_store_units[loop.index0]}}</td>
+					<td>{{cart_items_store_price[loop.index0]}}</td>
+					
+				</tr>
+				{%endfor%}
+				<tr class="total">
+					<td></td>
+					<td></td>
+					<td>Total:{{total_amount_store}}</td>
+				</tr>
+				{%endif%}
+				{%if items_from_out==True%}
+				<tr><td colspan="3" style="text-align:center;">From Outside</td></tr>
+				<tr class="heading">
+					<td>Parts</td>
+					<td>Units</td>
+					<td>Price</td>
+				</tr>
+				{%for item in cart_items_out_name%}
+				<tr class="item">
+					
+					<td>{{item}}</td>
+					<td>{{cart_items_out_units[loop.index0]}}</td>
+					<td>{{cart_items_out_price[loop.index0]}}</td>
+					
+				</tr>
+				{%endfor%}
+				<tr class="total">
+					<td></td>
+					<td></td>
+					<td>Total: {{total_amount_out}}</td>
+				</tr>
+				{%endif%}
+				{%if labour_charges==True%}
+				<tr><td colspan="3" style="text-align:center;">Labour Charges</td></tr>
+				<tr class="heading">
+					<td>Type</td>
+					<td>Description</td>
+					<td>Amount</td>
+				</tr>
+				{%for item in labour_charge_name%}
+				<tr class="item">
+					
+					<td>{{item}}</td>
+					<td>{{labour_charge_description[loop.index0]}}</td>
+					<td>{{labour_charge_price[loop.index0]}}</td>
+					
+				</tr>
+				{%endfor%}
+				<tr class="total">
+					<td></td>
+					<td></td>
+					<td>Total: {{total_labour_charge}}</td>
+				</tr>
+				{%endif%}
+				<tr class="heading">
+					<td>Total Amount</td><td></td>
+
+					<td>{{total_amount}}</td>
+				</tr>
+				{%if advance_paid==True%}
+				<<tr class="item">
+					<td>Amount Paid </td>
+					<td></td>
+
+					<td>-{{amount_paid}}</td>
+				</tr>
+				{%endif%}
+				{%if discounted==True%}
+				<tr class="item">
+					<td>Discount </td>
+					<td></td>
+
+					<td>-{{discount}}</td>
+				</tr>
+				{%endif%}
+				<tr class="heading">
+					<td>Amount Due</td>
+					<td></td>
+
+					<td> {{amount_due}}</td>
+				</tr>
+				
+				{%if invoice_note!=""%}
+				<tr class="heading">
+					<td colspan="4">{{invoice_note}}</td>
+				</tr>
+				{%endif%}
+				<tr><td></td></tr>
+				<tr><td colspan="4" style="text-align:center">Thank you for choosing us</td></tr>
+			</table>
+		</div>
+	</body>
+</html>

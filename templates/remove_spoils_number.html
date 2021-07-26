@@ -1,0 +1,10 @@
+{% extends "base.html" %}{%block content%}<div class="main">
+	<form action="/remove_spoils_return_second" method="POST">
+	<label for="units">Number of Spoilt Units:</label><br>
+	<input type="number" id="units" name="units" step="0.01" required><br>
+	<label for="remarks">Remarks:</label><br>
+	<input type="text" id="remarks" name="remarks"><br>
+	<input type="hidden" name="inv_id" id="inv_id" value={{inv_id}}>
+	<input type="submit" value="Submit">
+	</form>
+</div>{%endblock%}
